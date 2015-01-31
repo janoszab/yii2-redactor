@@ -1,11 +1,5 @@
 <?php
 
-/**
- * @link http://www.yiiframework.com/
- * @copyright Copyright (c) 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
- */
-
 namespace yii\redactor\widgets;
 
 use Yii;
@@ -17,18 +11,14 @@ use yii\web\AssetBundle;
 use yii\helpers\ArrayHelper;
 
 /**
- * @author Nghia Nguyen <yiidevelop@hotmail.com>
- * @since 2.0
+ * Class Redactor
+ * @package yii\redactor\widgets
  */
-class Redactor extends InputWidget
-{
+class Redactor extends InputWidget {
 
     public $options = [];
-    public $clientOptions = [
-        'imageManagerJson' => '/redactor/upload/imagejson',
-        'imageUpload' => '/redactor/upload/image',
-        'fileUpload' => '/redactor/upload/file'
-    ];
+    public $clientOptions = ['imageManagerJson' => '/redactor/upload/imagejson'];
+
     private $_assetBundle;
 
     public function init()
@@ -40,12 +30,7 @@ class Redactor extends InputWidget
                 $this->options['id'] = $this->getId();
             }
         }
-        if (isset($this->clientOptions['imageUpload'])) {
-            $this->clientOptions['imageUploadErrorCallback'] = new JsExpression("function(json){alert(json.error);}");
-        }
-        if (isset($this->clientOptions['fileUpload'])) {
-            $this->clientOptions['fileUploadErrorCallback'] = new JsExpression("function(json){alert(json.error);}");
-        }
+
         $this->registerAssetBundle();
         $this->registerRegional();
         $this->registerPlugins();
